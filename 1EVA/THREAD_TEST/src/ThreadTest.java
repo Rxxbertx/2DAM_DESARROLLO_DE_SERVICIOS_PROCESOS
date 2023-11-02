@@ -2,11 +2,12 @@
 public class ThreadTest extends Thread{
 
 	
-	int i;
+	int numero;
 	
-	public ThreadTest(int i) {
+	public ThreadTest(String name, int numero) {
 		
-		this.i=i;
+		setName(name);
+		this.numero= numero;
 	}
 	
 	@Override
@@ -16,14 +17,13 @@ public class ThreadTest extends Thread{
 		
 		int contador=0;
 		
-		System.out.println("CREACION DE HILO: "+i);
-		
-		while (contador <=5) {
+		while (contador <=numero) {
 			
-			System.out.println("HILO "+i+" :CONTADOR: "+contador++);
+			System.out.println("HILO "+getName()+" :CONTADOR: "+contador++);
 			
 			
 		}
+		//no va hacer nada mas
 		
 	}
 	
