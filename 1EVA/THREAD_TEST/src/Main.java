@@ -57,36 +57,37 @@ public class Main {
 		} catch (InterruptedException e) {
 			System.out.println("ALgo ha ido mal");
 		}*/
-		
-		
-		Thread hilo = new Thread(new RHilo());
-		Thread hilo2 = new Thread(new RHilo());
 
-		hilo.setName("HiLoN MuSk");
-		hilo2.setName("HiLo2");
+THilo hilo = new THilo();
+		THilo hilo2 = new THilo();
+		THilo hilo3= new THilo();
+		
+		hilo.setPriority(1);
+		hilo2.setPriority(10);
+		hilo3.setPriority(1);
 		
 		
-		hilo2.start();
+		
 		hilo.start();
+		hilo2.start();
+		hilo3.start();
 		
 		try {
-			hilo2.join();
-			hilo.join();
-		} catch (Exception e) {
-			// TODO: handle exception
+				Thread.sleep(4000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		hilo.pararHilo();
+		hilo2.pararHilo();
+		hilo3.pararHilo();
+		
+		System.out.println(hilo.getContador());
+		System.out.println(hilo2.getContador());
+		System.out.println(hilo3.getContador());
+			
 		}
 		
-		System.out.println("FIN PROGAMA");
-		
-		
-		
-		
-		
-		
-		
-		
 
-
-	}
 
 }
