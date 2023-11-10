@@ -1,47 +1,38 @@
 package ejercicioPingPong;
 
-public class Productor extends Thread{
+public class Productor extends Thread {
 
 	private Cola cola;
 	private String ping;
-	
-	public Productor(Cola c, String ping) {
-		
-		this.cola=c;
-		this.ping=ping;
 
-		
+	public Productor(Cola c, String ping) {
+
+		this.cola = c;
+		this.ping = ping;
+
 	}
-	
+
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		super.run();
-		
-		
-		
-		while(true) {
-			
 
+		while (true) {
 
-			
-		cola.put(ping);
-		
-		System.out.println("PRODUCTOR: " +ping);
+			cola.put(ping);
 
-		try {
-			
-			sleep(2000);
-			
-		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("PRODUCTOR: " + ping);
+
+			try {
+
+				sleep(2000);
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
 		}
-		
-		
-		
-		}
-		
+
 	}
-	
-	
+
 }

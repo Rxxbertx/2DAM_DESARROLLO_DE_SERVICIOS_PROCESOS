@@ -13,10 +13,9 @@ public class Consumidor extends Thread {
 	public void run() {
 		super.run();
 
-		
 		while (true) {
 
-			String str=cola.get();
+			String str = cola.get();
 			System.out.println("CONSUMIDOR: " + str);
 
 		}

@@ -3,28 +3,28 @@ package ejercicioPingPong;
 public class Cola {
 
 	private String str;
-	private boolean disponible =false;
-	
-	public  synchronized String get() {
-		
+	private boolean disponible = false;
+
+	public synchronized String get() {
+
 		while (!disponible) {
 			try {
-				
+
 				wait();
-				
+
 			} catch (InterruptedException e) {
 
 			}
-			
+
 		}
-		
-		disponible=false;
+
+		disponible = false;
 		notifyAll();
 		return "PONG";
 	}
-	
-	public synchronized void put (String str) {
-		
+
+	public synchronized void put(String str) {
+
 		while (disponible) {
 			try {
 				wait();
@@ -33,12 +33,11 @@ public class Cola {
 				e.printStackTrace();
 			}
 		}
-		
-		disponible=true;
-		this.str=str;
+
+		disponible = true;
+		this.str = str;
 		notifyAll();
-		
+
 	}
-	
-	
+
 }
