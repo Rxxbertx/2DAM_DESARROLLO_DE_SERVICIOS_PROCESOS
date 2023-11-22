@@ -26,7 +26,7 @@ public class Persona extends Thread {
 
 		this.nombre = nombre;
 		this.cb = cb;
-		retirar=((int)(Math.random()*2))==0?true:false;
+		retirar = ((int) (Math.random() * 2)) == 0 ? true : false;
 		setName(nombre);
 	}
 
@@ -54,7 +54,7 @@ public class Persona extends Thread {
 					interrupt();
 
 			}
-			
+
 			if (!finalizacion) {
 				try {
 					sleep(3000);
@@ -62,31 +62,31 @@ public class Persona extends Thread {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			} else {
+				continue;
 			}
-			
 
 		}
 
 		System.err.println(Thread.currentThread().getName() + " HA SALIDO DEL SISTEMA");
 
 	}
-	
-	
+
 	@Override
 	public void interrupt() {
 		// TODO Auto-generated method stub
-		super.interrupt();
-		finalizacion=true;
-	}
-	
 
-	private synchronized  void retirar() {
+		finalizacion = true;
+		super.interrupt();
+
+	}
+
+	private synchronized void retirar() {
 
 		if (intentosRetiro > 2) {
 
 			System.err.println(
 					Thread.currentThread().getName() + " INTENTALO DE NUEVO MAS TARDE: DEMASIADOS FALLOS RETIRANDO");
-
 			interrupt();
 
 		} else {
@@ -97,7 +97,7 @@ public class Persona extends Thread {
 
 				contadorRetiro++;
 				intentosRetiro = 0;
-				retirar=false;
+				retirar = false;
 
 			} else {
 
@@ -126,34 +126,34 @@ public class Persona extends Thread {
 			System.err.println(
 					Thread.currentThread().getName() + " INTENTALO DE NUEVO MAS TARDE: DEMASIADOS FALLOS INGRESANDO");
 
-			return;
-
-		}
-
-		float cantidad = (float) ((Math.random() * 500) + 1);
-
-		if (cb.ingreso(cantidad)) {
-
-			contadorIngreso++;
-			intentosIngreso = 0;
-			retirar=true;
-
+			interrupt();
 
 		} else {
 
-			intentosIngreso++;
-			try {
-				System.err
-						.println(Thread.currentThread().getName() + " VOLVIENDO A INTENTAR LA OPERACION EN 5 SEGUNDOS");
+			float cantidad = (float) ((Math.random() * 500) + 1);
 
-				wait(5000);
+			if (cb.ingreso(cantidad)) {
 
-				ingresar();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				contadorIngreso++;
+				intentosIngreso = 0;
+				retirar = true;
+
+			} else {
+
+				intentosIngreso++;
+				try {
+					System.err.println(
+							Thread.currentThread().getName() + " VOLVIENDO A INTENTAR LA OPERACION EN 5 SEGUNDOS");
+
+					wait(5000);
+
+					ingresar();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
-
 		}
 
 	}
