@@ -16,9 +16,9 @@ public class CuentaBancaria {
 	 * 
 	 */
 
-	Float saldoInicial;
-	Float saldoMaximo;
-	Float saldo;
+	private Float saldoInicial;
+	private Float saldoMaximo;
+	private Float saldo;
 	private Float saldoAnterior;
 
 	public CuentaBancaria(Float saldoInicial, Float saldoMaximo) {
@@ -35,7 +35,8 @@ public class CuentaBancaria {
 
 			saldoAnterior=saldo;
 			saldo += cantidad;
-			System.out.println(String.format("%s SALDO INGRESADO CORRECTAMENTE: %.2f€", Thread.currentThread().getName(),cantidad));
+			System.out.println(String.format("%s SALDO INGRESADO CORRECTAMENTE: %.2f€", 
+					Thread.currentThread().getName(),cantidad));
 			mostrarSaldo();
 			return true;
 
@@ -55,7 +56,8 @@ public class CuentaBancaria {
 
 			saldoAnterior=saldo;
 			saldo -= cantidad;
-			System.out.println(String.format("%s SALDO RETIRADO CORRECTAMENTE: %.2f€", Thread.currentThread().getName(),cantidad));
+			System.out.println(String.format("%s SALDO RETIRADO CORRECTAMENTE: %.2f€", 
+					Thread.currentThread().getName(),cantidad));
 			mostrarSaldo();
 			return true;
 
@@ -72,7 +74,8 @@ public class CuentaBancaria {
 	protected void mostrarSaldo() {
 
 		
-		System.out.println(String.format("%s SALDO ACTUAL: %.2f€ SALDO ANTERIOR: %.2f€", Thread.currentThread().getName(),saldo,saldoAnterior));
+		System.out.println(String.format("%s SALDO ACTUAL: %.2f€ SALDO ANTERIOR: %.2f€", 
+				Thread.currentThread().getName(),saldo,saldoAnterior));
 		saldoAnterior=saldo;
 		
 	}
@@ -83,13 +86,15 @@ public class CuentaBancaria {
 			
 			if(cantidad+saldo>saldoMaximo) {
 				
-				System.err.println(Thread.currentThread().getName()+" ERROR AL AGREGAR EL SALDO: " + cantidad + "€ Supera el limite maximo de la cuenta: "
+				System.err.println(Thread.currentThread().getName()+" "
+						+ "ERROR AL AGREGAR EL SALDO: " + cantidad + "€ Supera el limite maximo de la cuenta: "
 						+ saldoMaximo);
 				return false;
 			}
 			
 			if (cantidad <= 0) {
-				System.err.println(Thread.currentThread().getName()+" ERROR AL AGREGAR EL SALDO: " + cantidad + "€ Debes introducir un saldo mayor a 0€");
+				System.err.println(Thread.currentThread().getName()+" "
+						+ "ERROR AL AGREGAR EL SALDO: " + cantidad + "€ Debes introducir un saldo mayor a 0€");
 				return false;
 			}
 			return true;
@@ -99,11 +104,13 @@ public class CuentaBancaria {
 		if (metodo.equals("RETIRO")) {
 
 			if (cantidad > saldo) {
-				System.err.println(Thread.currentThread().getName()+" ERROR AL RETIRAR EL SALDO: " + cantidad+"€ NO PUEDES RETIRAR MAS DE LO QUE TIENES DISPONIBLE");
+				System.err.println(Thread.currentThread().getName()+" "
+						+ "ERROR AL RETIRAR EL SALDO: " + cantidad+"€ NO PUEDES RETIRAR MAS DE LO QUE TIENES DISPONIBLE");
 				return false;
 			}
 			if (cantidad <= 0) {
-				System.err.println(Thread.currentThread().getName()+" ERROR AL RETIRAR EL SALDO: " + cantidad + "€ Debes introducir un RETIRO mayor a 0€");
+				System.err.println(Thread.currentThread().getName()+" "
+						+ "ERROR AL RETIRAR EL SALDO: " + cantidad + "€ Debes introducir un RETIRO mayor a 0€");
 				return false;
 			}
 			return true;

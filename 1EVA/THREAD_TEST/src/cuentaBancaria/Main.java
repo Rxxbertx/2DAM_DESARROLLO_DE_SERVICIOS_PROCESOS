@@ -5,10 +5,11 @@ public class Main {
 	public static void main(String[] args) {
 
 		CuentaBancaria cb = new CuentaBancaria(200F, 500F);
-
-		Persona admin = new Persona("AdminSupremo", cb);
+		
 		Persona alexander = new Persona("alexander", cb);
 		Persona pablito = new Persona("pablito", cb);
+		Persona admin = new Persona("AdminSupremo", cb);
+		
 
 		admin.start();
 		alexander.start();
